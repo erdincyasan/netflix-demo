@@ -1,10 +1,34 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+<div class="container">
+  <div id="nav" v-if="$store.getters.isAuthenticated">
+    <router-link to="/">Hakkında</router-link> |
+    <router-link to="/movies">Movies</router-link>|
+    <router-link to="/categories"> Categories</router-link>|
+    <router-link to="/addMovie">AddMovie</router-link>|
+    <router-link to="/addCategory" > AddCategory</router-link>|
+  </div>
+  <div id="nav" v-if="!$store.getters.isAuthenticated">
+   
+    <router-link to="/login">Giriş Yap</router-link>|
+    <router-link to="/register" > Kayıt ol</router-link>|
   </div>
   <router-view/>
+
+</div>
+  
 </template>
+<script>
+export default({
+created(){
+      if(this.$store.getters.isAuthenticated)
+      {
+        console.log("Giriş yapıldı!");
+          
+      }
+    
+  }
+})
+</script>
 
 <style>
 #app {
